@@ -13,3 +13,7 @@ Code written for lectures and homework in USC CSCI570-Analysis of Algorithms
 - Asymptotic Notation
 - [Graph Theory](./Lecture2-BFS-DFS-Graph/README.md)
 
+### Lecture3 Greedy
+
+### Lecture4 Heaps
+- 
