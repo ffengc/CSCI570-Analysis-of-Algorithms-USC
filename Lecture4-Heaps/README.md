@@ -10,6 +10,11 @@
     - [Code](#code)
   - [Binomial Heap](#binomial-heap)
   - [Fibonacci Heap](#fibonacci-heap)
+  - [Median Heap in Homework4-Question1](#median-heap-in-homework4-question1)
+    - [(a.) Data structure design](#a-data-structure-design)
+    - [(b.) Algorithms (high-level description)](#b-algorithms-high-level-description)
+    - [(c.) Extension: Constructor in $O(n)$](#c-extension-constructor-in-on)
+    - [(d.) Code in C++ for this data structure](#d-code-in-c-for-this-data-structure)
 
 ## what is the Priority Queues
 
@@ -86,3 +91,77 @@ code: [stl_priority_queue.hpp](./stl_priority_queue.hpp)
 ## Binomial Heap
 
 ## Fibonacci Heap
+
+## Median Heap in Homework4-Question1
+
+![](./assets/midHeap.png)
+
+### (a.) Data structure design
+
+We maintain two heaps:
+
+- A **max-heap** that stores the smaller half of the numbers (the “left / down” side).
+- A **min-heap** that stores the larger half of the numbers (the “right / up” side).
+
+We enforce the following invariants:
+
+1. The size difference between the two heaps is at most 1. (Similar to the AVL tree balancing rule)
+2. **If both heaps have the same size, the median is defined as the maximum element of the max-heap.**
+3. If one heap has one more element than the other, the median is the top element of that heap.
+
+This ensures that:
+
+- **Find-median** simply returns the heap top, which is $O(1)$.
+- **Insert** only requires inserting into the appropriate heap and possibly rebalancing, which is $O(\log n)$.
+- **Extract-median** removes the top of the heap containing the median and rebalances if necessary, which is $O(\log n)$.
+
+### (b.) Algorithms (high-level description)
+
+**Insert(x):**
+
+- Compare $x$ with the current median.
+- If $x \leq$ median, insert $x$ into the max-heap; otherwise, insert into the min-heap.
+- If the size difference between heaps exceeds 1, move the root from the larger heap to the smaller heap.
+- Complexity: 
+  - Insert operation: $O(\log n)$
+  - move the root (one pop operation + one push operation): $O(\log n)$
+  - therefore overall: $O(\log n)$
+
+**Extract-Median():**
+
+- Identify which heap contains the median (based on heap sizes).
+- Remove the root of that heap.
+- Complexity: $O(\log n)$ (due to heap pop operation).
+
+### (c.) Extension: Constructor in $O(n)$
+
+Instead of inserting elements one by one (which would cost $O(n \log n)$), it is possible to construct the two-heap data structure in linear time. The key idea is:
+
+1. **Find the median of the input sequence in $O(n)$ time.**
+
+   This can be done by the **median-of-medians algorithm**, which partitions the array into groups of 5, finds the median of each group, recursively computes the median of these medians, and uses it as a pivot. This guarantees a balanced partition and runs in linear time.
+
+2. **Partition the sequence** into two subsets:
+
+   - Elements less than or equal to the median → go into the max-heap (left / down side).
+   - Elements greater than the median → go into the min-heap (right / up side).
+
+3. **Build both heaps in $O(n)$.**
+
+   Heap construction from an unsorted array can be done in linear time by using the bottom-up heapify procedure.
+
+4. Ensure that the two heaps differ in size by at most one, which is guaranteed by choosing the correct number of elements on each side of the median.
+
+Thus, the entire construction can be achieved in **$O(n)$ time**:
+
+- Finding the median: $O(n)$
+
+- Partitioning: $O(n)$
+
+- Building two heaps: $O(n)$
+
+  → Overall: $O(n)$.
+
+### (d.) Code in C++ for this data structure
+
+- [medianHeap.hpp](./medianHeap.hpp)
