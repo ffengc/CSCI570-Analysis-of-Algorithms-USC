@@ -16,4 +16,9 @@ Code written for lectures and homework in USC CSCI570-Analysis of Algorithms
 ### Lecture3 Greedy
 
 ### Lecture4 Heaps
-- 
+- [Heaps and its Algorithm](./Lecture4-Heaps/)
+- [stl_priority_queue.hpp](./Lecture4-Heaps/stl_priority_queue.hpp)
+
+### Lecture7 DP
+- [homework6](./Lecture7-DP/HW6.md)
+- [homework6-code](./Lecture7-DP/homework.cc)
