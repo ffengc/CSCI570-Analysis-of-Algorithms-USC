@@ -1,6 +1,6 @@
 
 /**
- *  * this code write by fengchengyu in 10/11/2025 for homework7
+ *  @brief code write by fengchengyu in 10/11/2025 for homework6
  */
 
 #include <vector>
