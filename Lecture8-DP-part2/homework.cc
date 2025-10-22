@@ -88,6 +88,31 @@ void question1() {
     std::cout << burstBalloonsProblem(input) << std::endl;
 }
 
+
+int solveMarblesProblem (const std::vector<int>& marbles) {
+    // dp[l][r]: in this term, what's the score diff: me - opponent
+    // dp[l][r] = max(m[l] - dp[l+1][r], m[r] - dp[l][r-1])
+    // dp[l][l] = m[l]
+    // obj: dp[0][n-1]
+    // dp direction: right-up 
+    if (marbles.empty()) return 0;
+    int n = marbles.size();
+    auto dp = std::vector<std::vector<int>>(n, std::vector<int>(n));
+    for(int i = 0; i < n; ++i)
+        dp[i][i] = marbles[i];
+    // dp
+    for(int j = 1; j < n; ++j) {
+        for(int i = j - 1; i >= 0; --i) {
+            dp[i][j] = std::max(marbles[i] - dp[i + 1][j], marbles[j] - dp[i][j-1]);
+        }
+    }
+    return dp[0][n-1];
+}
+void question2() {
+    std::vector<int> marbles = {20, 30, 2, 2, 2, 10};
+    std::cout << "marbles problem: " << solveMarblesProblem(marbles) << std::endl;
+}
+
 std::pair<int, std::vector<int>> LIS(const std::vector<int>& nums) {
     if (nums.size() == 1) return {1, {1}};
     auto dp = std::vector<int>(nums.size(), 1);
@@ -119,6 +144,6 @@ void question3() {
     std::cout << lengthOfLBS(inputSeq) << std::endl;
 }
 int main() {
-    question3();
+    question2();
     return 0;
 }
