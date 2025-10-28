@@ -1,0 +1,23 @@
+Lecture 7: Dynamic Programming Part 1
+
+This directory contains materials related to Lecture 7 (Dynamic Programming) and Homework 6 for the CSCI 570 course. All files are organized for review, compilation, and reference.
+
+Files included:
+
+1. homework.cc
+   Source code implementation for Homework 6.
+   Contains dynamic programming solutions discussed in lecture and tested examples corresponding to HW6.md.
+
+2. HW6.md
+   Detailed homework write-up for Homework 6.
+   Includes problem statements, algorithmic explanations, and analysis notes.
+
+3. ungraded_homeworks_and_discussions.md
+   Supplementary materials for lecture discussions.
+   Includes additional ungraded problems, discussion notes, and review exercises for deeper understanding.
+
+4. assets/
+   Supporting resources such as figures or diagrams referenced in homework or lecture materials.
+
+The directory follows a consistent structure for clarity and maintainability.  
+Compilation can be performed using the provided makefile (not listed here).
