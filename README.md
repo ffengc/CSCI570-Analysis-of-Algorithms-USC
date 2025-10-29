@@ -28,6 +28,7 @@ Code written for lectures and homework in USC CSCI570-Analysis of Algorithms
 ### Lecture8 DP Part2
 - [homework7](./Lecture8-DP-part2/HW7.md)
 - [homework7-code](./Lecture8-DP-part2/homework.cc)
+- [ungraded_homeworks_and_discussions](./Lecture8-DP-part2/ungraded_homeworks_and_discussions.md)
 
 ### Lecture9 Network Flow
-- [homework8]()
+- [homework8](./Lecture9-Network-Flow/HW8.md)
