@@ -1,0 +1,40 @@
+CSCI570 - Analysis of Algorithms (USC)
+
+This repository contains code and notes written for lectures and homework assignments in USC CSCI570: Analysis of Algorithms.
+
+Lecture 1 - Matching Algorithms
+Codes: Lecture1-Perfect-Matching/GaleShapley.cc
+
+Lecture 2 - Asymptotic Notation, Graph Theory
+Codes: Lecture2-BFS-DFS-Graph/README.md
+
+Lecture 3 - Greedy Algorithms
+Codes: Lecture3-Greedy/question1.cc
+       Lecture3-Greedy/question2.cc
+       Lecture3-Greedy/question3.cc
+
+Lecture 4 - Heaps
+Codes and Notes: Lecture4-Heaps/stl_priority_queue.hpp
+                 Lecture4-Heaps/medianHeap.hpp
+                 Lecture4-Heaps/README.md
+
+
+Lecture 7 - Dynamic Programming Part 1
+Codes and Notes: Lecture7-DP-part1/
+                 Lecture7-DP-part1/HW6.md
+                 Lecture7-DP-part1/homework.cc
+                 Lecture7-DP-part1/ungraded_homeworks_and_discussions.md
+
+Lecture 8 - Dynamic Programming Part 2
+Codes and Notes: Lecture8-DP-part2/HW7.md
+                 Lecture8-DP-part2/homework.cc
+                 Lecture8-DP-part2/ungraded_homeworks_and_discussions.md
+
+Lecture 9 - Network Flow
+Codes and Notes: Lecture9-Network-Flow/HW8.md
+                 Lecture9-Network-Flow/Note.md
+
+Lecture 10 - Network Flow Applications
+Codes and Notes: Lecture10-Network-Flow-Application/HW9.md
+                 Lecture10-Network-Flow-Application/DIS9.md
+                 Lecture10-Network-Flow-Application/Note.md
