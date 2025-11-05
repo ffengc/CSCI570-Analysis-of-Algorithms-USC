@@ -1,8 +1,6 @@
 
 # CSCI570-Analysis-of-Algorithms-USC
 
-![](./usc.png)
-
 Code written for lectures and homework in USC CSCI570-Analysis of Algorithms
 
 ### Lecture1 and HW1
@@ -32,3 +30,9 @@ Code written for lectures and homework in USC CSCI570-Analysis of Algorithms
 
 ### Lecture9 Network Flow
 - [homework8](./Lecture9-Network-Flow/HW8.md)
+- [note of the lecture](./Lecture9-Network-Flow/Note.md)
+
+### Lecture10 Network Flow Application
+- [homework9](./Lecture10-Network-Flow-Application/HW9.md)
+- [discussion9](./Lecture10-Network-Flow-Application/DIS9.md)
+- [note of the lecture](./Lecture10-Network-Flow-Application/Note.md)
