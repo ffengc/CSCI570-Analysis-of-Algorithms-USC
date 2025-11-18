@@ -7,6 +7,11 @@
       - [从 SET COVER 归约（证明 NP-Hard）](#从-set-cover-归约证明-np-hard)
       - [归约正确性证明](#归约正确性证明)
       - [结论](#结论)
+  - [Question2](#question2)
+    - [决策问题定义](#决策问题定义)
+    - [CLIQUE ∈ NP（高效认证）](#clique--np高效认证)
+    - [从 Independent Set 归约，证明 NP-hard](#从-independent-set-归约证明-np-hard)
+
 
 **如何证明一个问题是 NP-Complete / NP-Hard (Q1):**
 
@@ -142,3 +147,102 @@ $\bigcup_{i\in I} S_i = U$。
 2. SET COVER 能多项式归约到寿司套餐问题。
 3. 因此寿司套餐问题是 NP-Hard。
 4. 结合第 1 点，它实际上是 NP-Complete。
+
+## Question2
+
+Problem $\operatorname{CLIQUE}(G,k)$ asks whether, given a graph G, does G contain a k-clique? A k-clique is defined to be a set of k vertices such that each pair of these vertices shares an edge. Show via reduction that CLIQUE is NP-complete.
+
+### 决策问题定义
+
+决策版 CLIQUE 问题定义如下：
+
+**输入：**
+
+- 一张图 $G = (V, E)$
+- 一个整数 k
+
+**问题：**
+
+图 G 中是否存在一个 **k-clique**？
+
+也就是说，是否存在一个顶点子集 $S \subseteq V$，满足 $|S| = k$，并且对任意两个顶点 $u,v \in S$，都有边 $(u,v) \in E$。
+
+### CLIQUE ∈ NP（高效认证）
+
+先证明 CLIQUE 属于 NP。
+
+**certificate（证明）：**
+
+可以取一个大小为 k 的顶点集合 $S \subseteq V$。
+
+**certifier（验证器）：**
+
+给定 $(G,k)$ 和集合 S，验证器执行：
+
+1. 检查 $|S| = k$。
+2. 对 $S$ 中的每一对顶点 $u,v$，检查边 $(u,v)$ 是否在 $E$ 中。
+
+顶点对最多有 $\binom{k}{2}$ 个，因此检查过程在输入规模的多项式时间内完成。
+
+所以 CLIQUE 具有 efficient certification，属于 NP。
+
+### 从 Independent Set 归约，证明 NP-hard
+
+Independent Set（独立集）是 NP-complete，并且是从 3-SAT 用 gadgets 归约来的。
+
+现在我们利用 图的补图（complement graph），把 Independent Set 归约到 CLIQUE。
+
+**Independent Set 决策问题：**
+
+输入：
+
+- 图 $G = (V, E)$
+- 整数 k
+
+**问题：**
+
+是否存在顶点集合 $S \subseteq V$，使得 $|S|\ge k$，并且 S 中任意两个顶点之间都 **没有边**（即没有一条边的两个端点都在 S 中）？课堂上已经证明过：Independent Set 是 NP-complete。
+
+**Construction of the reduction / 归约的构造**
+
+给定 Independent Set 的输入 $(G=(V,E), k)$，构造 CLIQUE 的输入 $(G'=(V,E'), k)$：
+
+- $G'$ 的顶点集合与 G 相同： $V(G') := V(G)$。
+
+- $G'$ 的边集合 $E'$ 取为 $E$ 的补图：
+
+  对任意不同顶点 $u,v \in V$，定义 $(u,v) \in E' \iff (u,v) \notin E$。
+
+也就是说：在原图中 **没有** 边的地方，在补图中就 **加** 一条边；原图中有边的地方，补图中就不连边。
+
+这个构造只需要枚举所有顶点对一次，显然是多项式时间完成的。
+
+参数 k 保持不变。
+
+**归约正确性**
+
+**“如果”方向（⇒）**
+
+假设 $(G,k)$ 是 Independent Set 的 YES 实例。
+
+那么存在集合 $S \subseteq V$，满足 $|S|\ge k$，并且对任何 $u,v \in S$，在原图 G 中都 **没有** 边 $(u,v) \in E$。
+
+根据补图的构造，在 G 中没有边的地方，在 G' 中就一定有边：
+
+也就是对所有 $u,v \in S$，都有 $(u,v) \in E'$。
+
+因此在 $G'$ 中，集合 S 内的任意两点都相连，所以 $S$ 在 $G'$ 中构成一个大小至少为 k 的 clique。
+
+于是 $(G',k)$ 是 CLIQUE 的 YES 实例。
+
+**“只有如果”方向（⇐）**
+
+反过来，假设 (G',k) 是 CLIQUE 的 YES 实例。
+
+那么存在集合 $S \subseteq V$，满足 $|S|\ge k$，并且在 G' 中，S 中任意两个顶点之间都有边 $(u,v) \in E'$。
+
+由补图定义，这意味着在原图 G 中，对所有 $u,v \in S$，都 **没有** 边 $(u,v) \in E$。
+
+因此在 G 中，集合 S 中任意两个顶点都不相邻，S 就是一个大小至少为 k 的 independent set。
+
+于是 $(G,k)$ 是 Independent Set 的 YES 实例。
