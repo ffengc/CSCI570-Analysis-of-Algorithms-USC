@@ -11,7 +11,7 @@
     - [决策问题定义](#决策问题定义)
     - [CLIQUE ∈ NP（高效认证）](#clique--np高效认证)
     - [从 Independent Set 归约，证明 NP-hard](#从-independent-set-归约证明-np-hard)
-
+  - [Question3](#question3)
 
 **如何证明一个问题是 NP-Complete / NP-Hard (Q1):**
 
@@ -246,3 +246,35 @@ Independent Set（独立集）是 NP-complete，并且是从 3-SAT 用 gadgets �
 因此在 G 中，集合 S 中任意两个顶点都不相邻，S 就是一个大小至少为 k 的 independent set。
 
 于是 $(G,k)$ 是 Independent Set 的 YES 实例。
+
+## Question3
+
+Recall the 3-SAT problem: Given a 3-CNF input formula, it tries to find an assignment of variables that satisfies **ALL** given clauses. Now, we consider a variation — the partial satisfiability problem, denoted as $3\text{-Sat}(\alpha)$, for a specified constant $\alpha$. Here, we are given a collection of $k$ clauses, each of which contains exactly three literals, and we are asked to determine whether there is an assignment of true/false values to the literals such that **at least $\alpha k$ clauses will be true**. Note that for $\alpha = 1$, we have the problem $3\text{-Sat}(1)$ which is exactly the 3-SAT problem as per definition. We want to analyze the problem corresponding to a smaller $\alpha$, in particular, $\alpha = \frac{15}{16},$ which gives us the problem $3\text{-Sat}\left(\frac{15}{16}\right)$.
+
+**Show that the problem $3\text{-Sat}\left(\frac{15}{16}\right)$ is NP-complete.** (20 points)
+
+**Hint:** If $x, y, z$ are variables, there are eight possible clauses containing them:
+
+$(x \lor y \lor z),\ (\lnot x \lor y \lor z),\ (x \lor \lnot y \lor z),\ $
+
+$(x \lor y \lor \lnot z),\ (\lnot x \lor \lnot y \lor z),\ (\lnot x \lor y \lor \lnot z),\ (x \lor \lnot y \lor \lnot z),\ (\lnot x \lor \lnot y \lor \lnot z).$
+
+> [!tip]
+>
+> 这题真不简单啊。考试基本不可能想到。
+>
+> 1. 首先就是这个hint，这个hint是三个元素的所有子句能形成的组合。一个重要的性质就是，==无论如何组合，都必须有一个为假！（这个性质很重要，7必错1）==
+> 2. 然后要把原来的子句个数，扩充到8的倍数。如何扩充呢，就加入必真子句，比如 $x \or \lnot x \or y$ 这种。
+> 3. 扩充成8的倍数之后。每8个为一组，每一组分别加入一组 hint 中提到的组合子句集合。形成一个8+8的组合。此时这8+8的组合，是不可能全对的，必须错一个。前8个就是一个basic 3-sat, 后8必须错一个。因此就得到这个 15/16 了。
+>
+> 整体的思路就是如何。
+
+> [!caution]
+>
+> Gadget 的 3 个变量必须是新变量（fresh variables），
+>
+> 因为如果 gadget 与原公式共享变量，则原公式的约束可能强迫 gadget 子句全部变为真（甚至 8/8 为真），
+>
+> 从而破坏 gadget 的“恰好 7 真 1 假”的关键性质，
+>
+> 进而使整个 15/16 构造失效。
